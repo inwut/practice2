@@ -52,4 +52,13 @@
         </pluginManagement>
     </build>
 
+    <profiles>
+        <profile>
+            <id>no-tests</id>
+            <properties>
+                <maven.test.skip>true</maven.test.skip>
+            </properties>
+        </profile>
+    </profiles>
+
 </project>

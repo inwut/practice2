@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CinemaService {
-    private static final String MOVIES_FILE = "src/main/resources/movies.txt";
-    private static final String TICKETS_FILE = "src/main/resources/tickets.txt";
+    private static String MOVIES_FILE = "src/main/resources/movies.txt";
+    private static String TICKETS_FILE = "src/main/resources/tickets.txt";
 
     private List<Movie> movies;
     private List<Ticket> tickets;
@@ -81,5 +81,13 @@ public class CinemaService {
 
     public List<Ticket> getTickets() {
         return tickets;
+    }
+
+    public static void setMoviesFile(String moviesFile) {
+        MOVIES_FILE = moviesFile;
+    }
+
+    public static void setTicketsFile(String ticketsFile) {
+        TICKETS_FILE = ticketsFile;
     }
 }
