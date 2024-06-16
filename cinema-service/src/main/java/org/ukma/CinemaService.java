@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CinemaService {
-    private static String MOVIES_FILE = "src/main/resources/movies.txt";
-    private static String TICKETS_FILE = "src/main/resources/tickets.txt";
+    private static String MOVIES_FILE = "C:\\Users\\Lenovo\\Desktop\\automation\\cinema\\cinema-service\\src\\main\\resources\\movies.txt";
+    private static String TICKETS_FILE = "C:\\Users\\Lenovo\\Desktop\\automation\\cinema\\cinema-service\\src\\main\\resources\\tickets.txt";
 
     private List<Movie> movies;
     private List<Ticket> tickets;
@@ -39,10 +39,8 @@ public class CinemaService {
             if (obj instanceof List) {
                 movies = (List<Movie>) obj;
             }
-        } catch (FileNotFoundException e) {
-            System.out.println("Файл з фільмами не знайдено, створюється новий.");
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            movies = new ArrayList<>();
         }
     }
 
@@ -52,10 +50,8 @@ public class CinemaService {
             if (obj instanceof List) {
                 tickets = (List<Ticket>) obj;
             }
-        } catch (FileNotFoundException e) {
-            System.out.println("Файл з квитками не знайдено, створюється новий.");
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            tickets = new ArrayList<>();
         }
     }
 
@@ -63,7 +59,7 @@ public class CinemaService {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(MOVIES_FILE))) {
             oos.writeObject(movies);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -71,7 +67,7 @@ public class CinemaService {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(TICKETS_FILE))) {
             oos.writeObject(tickets);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
