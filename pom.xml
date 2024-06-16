@@ -7,11 +7,49 @@
     <groupId>org.ukma</groupId>
     <artifactId>cinema</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <modules>
+        <module>cinema-models</module>
+        <module>cinema-service</module>
+        <module>cinema-statistics</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>3.3.1</version>
+                    <executions>
+                        <execution>
+                            <id>copy-resources</id>
+                            <phase>compile</phase>
+                            <goals>
+                                <goal>copy-resources</goal>
+                            </goals>
+                            <configuration>
+                                <outputDirectory>${project.basedir}/cinema-statistics/src/main/resources</outputDirectory>
+                                <resources>
+                                    <resource>
+                                        <directory>${project.basedir}/cinema-service/src/main/resources</directory>
+                                        <includes>
+                                            <include>tickets.txt</include>
+                                        </includes>
+                                    </resource>
+                                </resources>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 
 </project>
